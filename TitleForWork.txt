@@ -1,0 +1,41 @@
+1. Как добавить шрифт: 1) шрифт должен быть с маленькам регистром,
+					   2)создать в папке res/ папку font (ResorseType доже быть font)
+					   3)закинуть в папку
+					
+2. Как сделать кнопку:
+		android:background="@drawable/cusstom_button" ------ЗАПОМНИ
+
+--------------------------
+Текст без капса
+		android:textAllCaps="false 
+
+--------------------------
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#66F9B0"/>
+    <corners android:radius="10dp"/>
+</shape>
+
+
+
+
+КАК СДЕЛАТЬ ГРАДИЕНТ ---------------------------------
+БЕРЕМ ПЕРВОЕ ЗНАЧЕНИЕ ГРАДИЕНТА
+ДАЛЕЕ...
+		<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+			<gradient android:startColor="#2af556" android:endColor="#009efd" android:type="linear"/>
+			<corners android:radius="5dp"/>
+		</shape>
+		
+------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
