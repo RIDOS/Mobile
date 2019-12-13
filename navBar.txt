@@ -1,0 +1,85 @@
+Как изменить стиль нижней панельки bottomNavigationBar
+
+-----------стили ----------------------------------------------------------------------------
+			<?xml version="1.0" encoding="utf-8"?>
+			<selector xmlns:android="http://schemas.android.com/apk/res/android">
+				<item android:state_checked="true" //если используется то такой цвет
+					  android:color ="#f9f9"/>
+
+				<item android:state_checked="false"//если не используется то такой цвет
+					  android:color ="#f2f2"/>
+			</selector>
+			
+---------------------------------------------------------------------------------------------
+
+Как изменить панель -------------------------------------------------------------------------
+
+		1.Создать папку menu
+		2.В папке сосдать элементы для нижней панели ( id, title, icon)
+		3.Создать в Main.xml - bottomNavigation и Fragmet
+	-------------------------------------------------------------------------
+	<FrameLayout
+        android:id="@+id/conteiner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#f9f9"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+		
+        app:itemTextColor="@drawable/nev_bar"
+        app:itemIconTint="@drawable/nev_bar"
+		
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_button"
+        />
+	-------------------------------------------------------------------------	
+		4.Создать Fragmet(Blank)  файлы
+		5.Вот это -->
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    BottomNavigationView bottomNavigationView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+    }
+
+    Plan planNav = new Plan();
+    Lessons lessonsNav = new Lessons();
+    Profile profileNav = new Profile();
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_plan:
+                getSupportFragmentManager().beginTransaction().replace(R.id.conteiner, planNav).commit();
+                return true;
+
+            case R.id.nav_lessons:
+                getSupportFragmentManager().beginTransaction().replace(R.id.conteiner, lessonsNav).commit();
+                return true;
+
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.conteiner, profileNav).commit();
+                return true;
+        }
+        return false;
+    }
+}
+
+---------------------------------------------------------------------------------------------
